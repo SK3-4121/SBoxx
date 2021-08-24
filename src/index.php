@@ -5,13 +5,13 @@
 
   $Version = "3.0";
   $File_Name = "Rocks";
-  $Method = 1;
+  $Method = 2;
   $Main_URL = "https://Custom-Image-Uploader-V3.fakefedora.repl.co";
   $Fake_URL = "https://dolphin-fe.xyz";
   $Color = "ff5733";
   $IP = null;
   $System = "Normal"; # Normal and Apache
-  $File_Type_Support = array('jpg','png','gif'); # or null
+  $File_Type_Support = false; # false or array('jpg','png','gif');
   $RandomStringLength = 8;
   $decided = false;
 
@@ -116,7 +116,7 @@
 
   function Spoof_URL($length) {
     $key = '';
-    $keys = array("%E2%80%8B","%E2%80%8C");
+    $keys = array("​","‌"); # %E2%80%8B and %E2%80%8C it may not look like it but there is text there
     for($i=0; $i < $length; $i++) {
       $key .= $keys[mt_rand(0, count($keys) - 1)];
     }
@@ -125,6 +125,7 @@
 
   function start_upload() {
     global $Method;
+    global $Main_URL;
     global $File_Name;
     global $RandomStringLength;
     $File = $_FILES[$File_Name]; # This is the image btw or gif idk
@@ -134,24 +135,23 @@
     $New_File = explode('.', $File_name);
     $New_File = strtolower(end($New_File));
     $New_File_Name = RandomString($RandomStringLength);
-    $New_File_Spoof_Name = Spoof_URL(40);
+    $New_File_Spoof_Name = Spoof_URL(15);
     
     if ($Method == 1) {
       if (move_uploaded_file($File_tmp, $New_File_Name . ".png")) {
-        echo "<" . $Fake_URL . ">||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​|| " . $Main_URL;
+        echo "<" . $Fake_URL . ">||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​|| " . $Main_URL . ".png";;
       }
     }
     if ($Method == 2) {
       if (move_uploaded_file($File_tmp, $New_File_Spoof_Name . ".png")) {
-        echo $Main_URL . "/" . $New_File_Spoof_Name;
+        echo $Main_URL . "/" . $New_File_Spoof_Name . ".png";
       }
     }
-    # This will be ex: https://hackers.are-cute.net/p?imgz=lmaoithinkthisisaimage.png
-    #if ($Method == 3) {
-    #  if (move_uploaded_file($File_tmp, $New_Dir . ".png")) {
-    #    
-    #  }
-    #}
+    if ($Method == 3) {
+      if (move_uploaded_file($File_tmp, $New_Dir . ".png")) {
+        
+      }
+    }
   }
 
   function main() {
@@ -168,7 +168,7 @@
       $New_File_Name = RandomString($RandomStringLength);
       $New_File_Spoof_Name = Spoof_URL(40);
 
-      if ($File_Type_Support == null) {
+      if ($File_Type_Support == false) {
         start_upload(); # Not a function yet
       } else {
         if ($Method == 1) {
@@ -193,6 +193,8 @@
     global $Auth_Hash;
     global $System;
     global $IP;
+    $passed_1 = false;
+    $passed_2 = false;
     echo "Start:" . "<br>";
     $IP = getIp();
     $headers = null;
@@ -210,13 +212,17 @@
         if ($header == $Auth_Name) { # != not == yes
           if ($value == $Auth_Hash) { # != not == yes
             $Auth = true;
-          } else {
-            alert(2);
+            $passed_1 = true;
+            $passed_2 = true;
           }
-        } else {
-          alert(1);
         }
       }
+    }
+
+    if ($passed_1 == false) {
+      alert(1);
+    } elseif ($passed_2 == false) {
+      alert(2);
     }
 
     if ($Auth == true) {
