@@ -144,7 +144,7 @@
     }
     if ($Method == 2) {
       if (move_uploaded_file($File_tmp, $New_File_Spoof_Name . ".png")) {
-        echo $Main_URL . "/" . $New_File_Spoof_Name . ".png";
+        echo $Main_URL . "/" . $New_File_Spoof_Name;
       }
     }
     if ($Method == 3) {
