@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.png [NC,L]
+RewriteRule ^([^\.]+)$ $1.jpg [NC,L]
+RewriteRule ^([^\.]+)$ $1.gif [NC,L]
