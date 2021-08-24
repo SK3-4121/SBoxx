@@ -5,17 +5,18 @@
 
   $Version = "3.0";
   $File_Name = "Rocks";
-  $Method = 4;
-  $Extention = true;
+  $Method = 5;
+  $Extention = false;
   $Main_URL = "https://api.dolphin-fe.xyz/p/";
   $Fake_URL = "https://fbi.gov";
   $Color = "ff5733";
-  $Tag = "SK3";
+  $Tag = "Milfs";
   $IP = null;
   $System = "Normal"; # Normal and Apache
   $File_Type_Support = false; # false or array('jpg','png','gif');
   $RandomStringLength = 8;
   $decided = false;
+  $libhookz = require("lib/libhookz.php");
 
   $Auth = false; # or null
   $Auth_Name = "Authorization";
@@ -166,13 +167,25 @@
         }
       }
     }
-    if ($Method == 4) { # Theres nothing stoping you from fzxing this
+    if ($Method == 4) { # Theres nothing stoping you from fking this
       global $Tag;
+      #echo substr_replace($Main_URL ,"",-13);
       if (move_uploaded_file($File_tmp, $New_File_Name . ".png")) { # New_File_Name Is the old method becuase other wise there would be nothing for the key
         if ($Extention == false) {
-          echo substr_replace($Main_URL ,"",-1) . "/index.php?" . $Tag . "=" . $New_File_Name;
+          echo substr_replace($Main_URL ,"",-1) . "/lib/libhookz.php?" . $Tag . "=" . $New_File_Name;
         } else {
-          echo substr_replace($Main_URL ,"",-1) . "/index.php?" . $Tag . "=" . $New_File_Name . ".png";
+          echo substr_replace($Main_URL ,"",-1) . "/lib/libhookz.php?" . $Tag . "=" . $New_File_Name . ".png";
+        }
+      }
+    }
+    if ($Method == 5) {
+      global $Tag;
+      #echo substr_replace($Main_URL ,"",-3);
+      if (move_uploaded_file($File_tmp, $New_File_Name . ".png")) { # New_File_Name Is the old method becuase other wise there would be nothing for the key
+        if ($Extention == false) {
+          echo substr_replace($Main_URL ,"",-3) . "?" . $Tag . "=" . $New_File_Name;
+        } else {
+          echo substr_replace($Main_URL ,"",-3) . "?" . $Tag . "=" . $New_File_Name . ".png";
         }
       }
     }
@@ -233,7 +246,7 @@
   }
 
   function auth() {
-    sideload();
+    #sideload();
     global $Auth;
     global $Auth_Name;
     global $Auth_Hash;
