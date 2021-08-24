@@ -12,5 +12,5 @@ Simple it is. The installer is half bash and python. bash gets the first half do
 Ubuntu: 
 $`sudo apt update && apt upgrade -y`
 $`sudo apt install wget -y`
-$`sudo wget https://github.com/SK3-4121/SBoxx/tree/main/Installer/install.sh && chmod +x install.sh && ./install.sh`
+$`sudo wget "https://raw.githubusercontent.com/SK3-4121/SBoxx/main/Installer/install.sh" && sudo chmod +x install.sh && sudo ./install.sh` - You can remove the sudo(s) in the script its up to you
 Any one wondering why I just did not use curl (Its because im a moke and though this is cooler xd)
