@@ -5,10 +5,12 @@
 
   $Version = "3.0";
   $File_Name = "Rocks";
-  $Method = 2;
-  $Main_URL = "https://Custom-Image-Uploader-V3.fakefedora.repl.co";
-  $Fake_URL = "https://dolphin-fe.xyz";
+  $Method = 4;
+  $Extention = true;
+  $Main_URL = "https://api.dolphin-fe.xyz/p/";
+  $Fake_URL = "https://fbi.gov";
   $Color = "ff5733";
+  $Tag = "SK3";
   $IP = null;
   $System = "Normal"; # Normal and Apache
   $File_Type_Support = false; # false or array('jpg','png','gif');
@@ -126,7 +128,9 @@
   function start_upload() {
     global $Method;
     global $Main_URL;
+    global $Fake_URL;
     global $File_Name;
+    global $Extention;
     global $RandomStringLength;
     $File = $_FILES[$File_Name]; # This is the image btw or gif idk
     $File_name = $File['name'];
@@ -139,17 +143,37 @@
     
     if ($Method == 1) {
       if (move_uploaded_file($File_tmp, $New_File_Name . ".png")) {
-        echo "<" . $Fake_URL . ">||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​|| " . $Main_URL . ".png";;
+        if ($Extention == false) {
+          echo "<" . $Fake_URL . ">||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​|| " . $Main_URL . $New_File_Name . ".png";
+        }
       }
     }
     if ($Method == 2) {
       if (move_uploaded_file($File_tmp, $New_File_Spoof_Name . ".png")) {
-        echo $Main_URL . "/" . $New_File_Spoof_Name;
+        if ($Extention == false) {
+          echo $Main_URL . $New_File_Spoof_Name;
+        } else {
+          echo $Main_URL . $New_File_Spoof_Name . ".png";
+        }
       }
     }
     if ($Method == 3) {
-      if (move_uploaded_file($File_tmp, $New_Dir . ".png")) {
-        
+      if (move_uploaded_file($File_tmp, $New_File_Name . ".png")) {
+        if ($Extention == false) {
+          echo $Main_URL . $New_File_Name;
+        } else {
+          echo $Main_URL . $New_File_Name . ".png";
+        }
+      }
+    }
+    if ($Method == 4) { # Theres nothing stoping you from fzxing this
+      global $Tag;
+      if (move_uploaded_file($File_tmp, $New_File_Name . ".png")) { # New_File_Name Is the old method becuase other wise there would be nothing for the key
+        if ($Extention == false) {
+          echo substr_replace($Main_URL ,"",-1) . "/index.php?" . $Tag . "=" . $New_File_Name;
+        } else {
+          echo substr_replace($Main_URL ,"",-1) . "/index.php?" . $Tag . "=" . $New_File_Name . ".png";
+        }
       }
     }
   }
@@ -170,7 +194,7 @@
 
       if ($File_Type_Support == false) {
         start_upload(); # Not a function yet
-      } else {
+      } else { # May or May not work as of Tue Aug 24 1:50:44 AM
         if ($Method == 1) {
           if (move_uploaded_file($File_tmp, $New_File_Name . ".png")) {
             echo "<" . $Fake_URL . ">||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​||||​|| " . $Main_URL;
@@ -178,7 +202,12 @@
         }
         if ($Method == 2) {
           if (move_uploaded_file($File_tmp, $New_File_Spoof_Name . ".png")) {
-            echo $Main_URL . "/" . $New_File_Spoof_Name;
+            echo $Main_URL . $New_File_Spoof_Name;
+          }
+        }
+        if ($Method == 3) {
+          if (move_uploaded_file($File_tmp, $New_File_Name . ".png")) {
+            echo $Main_URL . $New_File_Name;
           }
         }
       }
@@ -187,7 +216,24 @@
     }
   }
 
+  function sideload() {
+    global $Tag;
+    global $Main_URL;
+    global $Extention;
+    if ($_GET[$Tag]) {
+      $Img = $_GET[$Tag];
+      if ($Extention) {
+        header("Location: " . $Main_URL . $Img);
+      } else {
+        header("Location: " . $Main_URL . $Img . ".png");
+      }
+    } else {
+      return;
+    }
+  }
+
   function auth() {
+    sideload();
     global $Auth;
     global $Auth_Name;
     global $Auth_Hash;
@@ -195,7 +241,6 @@
     global $IP;
     $passed_1 = false;
     $passed_2 = false;
-    echo "Start:" . "<br>";
     $IP = getIp();
     $headers = null;
 
