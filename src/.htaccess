@@ -1,5 +1,10 @@
+Options +FollowSymLinks -MultiViews
 RewriteEngine on
+RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^([^\.]+)$ $1.png [NC,L]
 RewriteRule ^([^\.]+)$ $1.jpg [NC,L]
 RewriteRule ^([^\.]+)$ $1.gif [NC,L]
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+ErrorDocument 404 /404.html
