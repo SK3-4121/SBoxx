@@ -3,31 +3,52 @@
    ######### SBoxx Made by SK3#0001 ##########
     #########################################
 
-    $Version = "3.0";
-    $Tag = "Milfs";
-    $Extention = false;
+    $Bare_Raw = require("bare_raw.php");
+    $raw_data = file_get_contents("https://api.dolphin-fe.xyz/x/config.json");
+    $data = json_decode($raw_data);
+    $Version = $data->Version;
+    $Main_URL = $data->Main_URL;
+    $Tag = $data->Tag;
+    $Extention = $data->Extention;
+    $Embed_Support = $data->Embed_Support;
+    $Bold_Title = $data->Bold_Title;
+    $Title = $data->Title;
+    $Description = $data->Description;
+    $Color = $data->Color;
 
     function no_embed($Link) {
-        $src = '
-<html>
-    <head>
-        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-        <meta name="twitter:card" content="player" />
-        <meta name="twitter:site" content="@harry" />
-        <meta name="twitter:player:width" content="320" />
-        <meta name="twitter:player:height" content="180" />
-        <meta name="twitter:player:stream:content_type" content="video/mp4" />
-        <meta property="og:image" content="' . $Link . '"/>
-        <meta name="twitter:card" content="summary_large_image">
-    </head>
-</html>
-';
-        echo $src;
-    };
+      $src = $Bare_Raw.basic($Link);
+      echo $src;
+    }
+
+    function embed($Link) { # Title
+      $src = $Bare_Raw.basic_embed($Link);
+      echo $src;
+    }
+
+    function embed_1($Link) { # Title, Description
+      $src = $Bare_Raw.basic_embed_with_Description($Link);
+      echo $src;
+    }
+
+    function embed_2($Link) { # Title, Description, Bold Text
+      $src = $Bare_Raw.basic_embed_with_Description_Bold($Link);
+      echo $src;
+    }
+
+    function embed_3($Link) { # Title, Description, Bold Text, Color
+      $src = $Bare_Raw.basic_embed_with_Description_Bold_Color($Link);
+      echo $src;
+    }
+
+    function settings($Image) {
+      embed_3($Image);
+    }
 
     if ($_GET[$Tag]) {
+      global $Main_URL;
       $Img = $_GET[$Tag];
-      no_embed("https://api.dolphin-fe.xyz/p/" . $Img);
+      settings($Main_URL . $Img);
     } else {
       return;
     }
