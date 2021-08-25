@@ -1,0 +1,24 @@
+{
+    "Version": "3.0",
+    "File_Name": "Rocks",
+    "Main_URL": "https://api.dolphin-fe.xyz/p/",
+    "Fake_URL": "https://fbi.gov/",
+    "Tag": "Milfs",
+
+    "Extention": false,
+    "Method": 4,
+
+    "Embed_Support": true,
+    "Bold_Title": "Defualt Bold_Title",
+    "Title": "Defualt Title",
+    "Description": "Defualt Description",
+    "Color": "ff5733",
+
+    "System": "Normal",
+    "File_Type_Support": false,
+    "RandomStringLength": "8",
+    "Auth": false,
+    "Auth_Name": "Authorization",
+    "Auth_Hash": "69lul",
+    "webhookurl": ""
+}
