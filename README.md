@@ -21,6 +21,6 @@ $`sudo wget "https://raw.githubusercontent.com/SK3-4121/SBoxx/main/Installer/ins
 Any one wondering why I just did not use curl (Its because im a moke and though this is cooler xd)
 
 # Patch Notes: V3.1a
-New Route.php
-Inv URL Embeds
-Libhookz.php logs
+New Route.php.
+Inv URL Embeds.
+Libhookz.php logs.
