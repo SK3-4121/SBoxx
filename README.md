@@ -20,7 +20,11 @@ $`sudo wget "https://raw.githubusercontent.com/SK3-4121/SBoxx/main/Installer/ins
 
 Any one wondering why I just did not use curl (Its because im a moke and though this is cooler xd)
 
+# Setup
+For the links for .json files you have to put it as a link and not just a dir to the file because php has aids and does not like it. 
+Step 1: Go into all the files and check the https://js.dolphin-fe.xyz/ with your domain 
+
 # Patch Notes: V3.1a
-New Route.php.
-Inv URL Embeds.
-Libhookz.php logs.
+New Route.php,
+Inv URL Embeds,
+Libhookz.php logs,
