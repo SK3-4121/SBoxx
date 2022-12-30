@@ -5,6 +5,10 @@ Coding: SK3#0001
 
 Icon/Logo: TwoTap#7012
 
+# V2.0B
+USE THIS ONE ITS BETTER
+https://github.com/SK3-4121/SBoxx-2.0
+
 # What is SBoxx?
 SBoxx is a open source php image host for home users this will target the person that has a apache,ngixn,zipline server! With this you can create your own image host thats fast secure and has options. Made with php making it lite weight unlike js that heavy boy, php is fast and like mentioned lite weight. There were 2 other versions the first one was on pastebin and around 10 lines long it was nothing special V2.0 though add the invisible URL feature. This is the first of its kind please show some feed back if you can!
 
